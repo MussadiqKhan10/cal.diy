@@ -101,11 +101,12 @@ const Addon = ({
 );
 
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(function InputField(props, ref) {
-  const id = useId();
+  const fallbackId = useId();
   const { t: _t, isLocaleReady, i18n } = useLocale();
   const t = props.t || _t;
   const name = props.name || "";
   const {
+    id = fallbackId,
     label = t(name),
     labelProps,
     labelClassName,

@@ -8,6 +8,13 @@ import { InputField } from "./TextField";
 const onChangeMock = vi.fn();
 
 describe("Tests for InputField Component", () => {
+  test("Should properly associate label when custom id prop is passed", () => {
+    const { getByLabelText } = render(<InputField id="signup-password" name="password" label="Password" />);
+
+    const inputElement = getByLabelText("Password");
+    expect(inputElement).toHaveAttribute("id", "signup-password");
+  });
+
   test("Should render correctly with label and placeholder", () => {
     const { getByLabelText, getByPlaceholderText } = render(
       <InputField name="testInput" label="Test Label" placeholder="Test Placeholder" />
@@ -94,6 +101,14 @@ describe("Tests for EmailField Component", () => {
 });
 
 describe("Tests for TextAreaField Component", () => {
+  test("Should properly associate label when custom id prop is passed", () => {
+    const { getByLabelText } = render(
+      <TextAreaField id="custom-textarea-id" name="description" label="Description" />
+    );
+
+    const textareaElement = getByLabelText("Description");
+    expect(textareaElement).toHaveAttribute("id", "custom-textarea-id");
+  });
   test("Should render correctly with label and placeholder", () => {
     const { getByText, getByPlaceholderText, getByRole } = render(
       <TextAreaField name="testTextArea" label="Test Label" placeholder="Test Placeholder" />
